@@ -1,3 +1,5 @@
+import pdb
+
 from pysc2.lib import features, point, actions
 from absl import app, flags
 from pysc2.env.environment import TimeStep, StepType
@@ -19,14 +21,14 @@ class ReplayEnv:
                  screen_size_px=(64, 64),
                  minimap_size_px=(64, 64),
                  discount=1.,
-                 step_mul=1000):
+                 step_mul=1):
 
         self.agent = agent
         self.discount = discount
         self.step_mul = step_mul
 
-        self.run_config = run_configs.get()
-        self.sc2_proc = self.run_config.start()
+        self.run_config = run_configs.get('3.16.1')
+        self.sc2_proc = self.run_config.start(want_rgb=True)
         self.controller = self.sc2_proc.controller
 
         replay_data = self.run_config.replay_data(replay_file_path)
@@ -34,9 +36,6 @@ class ReplayEnv:
         info = self.controller.replay_info(replay_data)
         if not self._valid_replay(info, ping):
             raise Exception("{} is not a valid replay file!".format(replay_file_path))
-
-        screen_size_px = point.Point(*screen_size_px)
-        minimap_size_px = point.Point(*minimap_size_px)
 
         interface = sc_pb.InterfaceOptions()
         interface.raw = True
@@ -51,11 +50,9 @@ class ReplayEnv:
 
         interface.render.resolution.x = 1080
         interface.render.resolution.y = 1080
+        interface.render.width = 24
         interface.render.minimap_resolution.x = 128
         interface.render.minimap_resolution.y = 128
-
-        screen_size_px.assign_to(interface.feature_layer.resolution)
-        minimap_size_px.assign_to(interface.feature_layer.minimap_resolution)
 
         map_data = None
         if info.local_map_path:
@@ -64,11 +61,13 @@ class ReplayEnv:
         self._episode_length = info.game_duration_loops
         self._episode_steps = 0
 
-        self.controller.start_replay(sc_pb.RequestStartReplay(
+        req = sc_pb.RequestStartReplay(
             replay_data=replay_data,
-            map_data=map_data,
             options=interface,
-            observed_player_id=player_id))
+            map_data=map_data,
+            observed_player_id=player_id)
+
+        self.controller.start_replay(req)
 
         self._state = StepType.FIRST
 
@@ -81,18 +80,23 @@ class ReplayEnv:
                     len(info.player_info) != 2):
             # Probably corrupt, or just not interesting.
             return False
+#   for p in info.player_info:
+#       if p.player_apm < 10 or p.player_mmr < 1000:
+#           # Low APM = player just standing around.
+#           # Low MMR = corrupt replay or player who is weak.
+#           return False
         return True
 
     def start(self):
-        _features = features.features_from_game_info(self.controller.game_info(), action_space=actions.ActionSpace.FEATURES)
+        #_features = features.features_from_game_info(self.controller.game_info(), action_space=actions.ActionSpace.RAW)
 
         while True:
             self.controller.step(self.step_mul)
             obs = self.controller.observe()
-            try:
-                agent_obs = _features.transform_obs(obs)
-            except:
-                pass
+            # try:
+            #     agent_obs = _features.transform_obs(obs)
+            # except:
+            #     pass
 
             if obs.player_result: # Episide over.
                 self._state = StepType.LAST
@@ -103,7 +107,7 @@ class ReplayEnv:
             self._episode_steps += self.step_mul
 
             step = TimeStep(step_type=self._state, reward=0,
-                            discount=discount, observation=agent_obs)
+                            discount=discount, observation=obs)
 
             self.agent.step(step, obs.observation)
 
