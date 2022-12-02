@@ -9,7 +9,9 @@ class ObserverAgent():
         self.action_spec = None
 
     def step(self, time_step, obs):
+        pass
         rgb_screen = features.Feature.unpack_rgb_image(obs.render_data.map)
         plt.imshow(rgb_screen)
-        plt.title(F"Step:")
-        plt.savefig(time_step+".png")
+        plt.title(F"rgb_screen")
+        plt.show()
+        exit()

@@ -27,7 +27,7 @@ class ReplayEnv:
         self.discount = discount
         self.step_mul = step_mul
 
-        self.run_config = run_configs.get('3.16.1')
+        self.run_config = run_configs.get('4.10.1')
         self.sc2_proc = self.run_config.start(want_rgb=True)
         self.controller = self.sc2_proc.controller
 
@@ -54,9 +54,7 @@ class ReplayEnv:
         interface.render.minimap_resolution.x = 128
         interface.render.minimap_resolution.y = 128
 
-        map_data = None
-        if info.local_map_path:
-            map_data = self.run_config.map_data(info.local_map_path)
+        map_data = self.run_config.map_data(info.map_name.replace(" ", "") + ".SC2Map")
 
         self._episode_length = info.game_duration_loops
         self._episode_steps = 0
@@ -65,6 +63,8 @@ class ReplayEnv:
             replay_data=replay_data,
             options=interface,
             map_data=map_data,
+            realtime=False,
+            disable_fog=False,
             observed_player_id=player_id)
 
         self.controller.start_replay(req)
