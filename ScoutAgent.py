@@ -64,13 +64,12 @@ class ScoutAgent():
         replayTally = ReplayPicTally.ReplayPicTally()
 
         for iPic in range( picsToTake ):
-            print( f"Pic {iPic}" )
             leastViewed = globalTally.leastViewed()
             for unit in leastViewed:
                 if unit not in self.intervals:
                     continue
                 picTime, picVis = self.intervals.random( unit )
-                print( f"PicTime {picTime}" )
+                print( f"PicTime {picTime} targeting {UnitId.unitsSc[unit]} with count {globalTally.pics[unit]}" )
                 screenshotTimes.append( picTime )
                 for visible in picVis:
                     replayTally.add( visible )
@@ -81,7 +80,6 @@ class ScoutAgent():
         self.writeScreenshots( screenshotTimes )
         print( f"Local Tally: {replayTally}" )
         print( f"Global Tally: {globalTally}" )
-        
 
 
     def writeScreenshots( self, screenshotTimes ):
