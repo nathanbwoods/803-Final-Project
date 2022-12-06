@@ -14,7 +14,7 @@ class ObserverAgent():
         rgb_screen = features.Feature.unpack_rgb_image(obs.render_data.map)
         plt.figure()
         plt.imshow(rgb_screen, aspect='equal')
-        plt.imsave('tick_0.png', rgb_screen)
+        plt.imsave('tick_6100.png', rgb_screen)
         ax = plt.gca()
 
         # Major ticks

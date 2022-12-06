@@ -21,7 +21,7 @@ class ReplayEnv:
                  screen_size_px=(64, 64),
                  minimap_size_px=(64, 64),
                  discount=1.,
-                 step_mul=1):
+                 step_mul=6100):
 
         self.agent = agent
         self.discount = discount
