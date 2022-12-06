@@ -73,8 +73,8 @@ class ScoutAgent():
                 print( f"PicTime {picTime}" )
                 screenshotTimes.append( picTime )
                 for visible in picVis:
-                    replayTally.add( unit )
-                    globalTally.add( unit )
+                    replayTally.add( visible )
+                    globalTally.add( visible )
                 break
         replayTally.save( self.intervals.num )
 
