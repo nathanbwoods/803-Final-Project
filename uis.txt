@@ -1,0 +1,107 @@
+# 00a1f4089fe0896cd8b240c60d1f8048b231447f7dbbf86a41b9f708ea2f37e6.SC2Replay
+UnitIntervalSet [0]: (
+665/LabMineralField :
+IntegerIntervalSet: (
+(0,9194)
+	) # IntegerIntervalSet (9195)
+666/LabMineralField750 :
+IntegerIntervalSet: (
+(0,4036),(4045,9194)
+	) # IntegerIntervalSet (9187)
+45/SCV :
+IntegerIntervalSet: (
+(0,1301),(1304,2959),(3040,3226),(3242,3698),(3752,4242),(4334,4629),(4808,5468),(5562,6036),(6052,6478),(6542,9121)
+	) # IntegerIntervalSet (8532)
+343/SpacePlatformGeyser :
+IntegerIntervalSet: (
+(0,420),(523,1825),(2043,2554),(2640,2642),(2651,3226),(3238,3347),(3374,3698),(3725,3744),(3749,6855),(6931,9194)
+	) # IntegerIntervalSet (8641)
+18/CommandCenter :
+IntegerIntervalSet: (
+(0,1016),(1224,1301),(1451,1516),(1600,1663),(2055,2194),(2549,2554),(2643,2790),(3242,3347),(3752,3791),(4829,4983),(5364,5468)
+	) # IntegerIntervalSet (1925)
+473/UnbuildableBricksDestructible :
+IntegerIntervalSet: (
+(419,521),(898,1016),(1298,1459),(1839,2060),(2555,2646),(3227,3245),(3699,3765),(4356,4628),(4810,4828),(5000,5363),(5580,6224),(6542,6855),(7069,7354),(7519,7903),(8023,8048),(8787,9194)
+	) # IntegerIntervalSet (3504)
+19/SupplyDepot :
+IntegerIntervalSet: (
+(500,576),(845,1016),(1257,1516),(1839,2084),(2555,2790),(3227,3269),(3348,3381),(3485,3522),(3628,3791),(6052,6237),(6384,6470),(6542,6616),(6856,6941),(7287,7291),(7296,7354),(7941,7948),(8136,8156),(8787,8835),(8999,9093)
+	) # IntegerIntervalSet (1941)
+20/Refinery :
+IntegerIntervalSet: (
+(711,1016),(1224,1516),(1600,1663),(2038,2194),(2549,2790),(3227,3347),(3699,3726),(3743,3791),(4829,4983),(5364,5468),(6225,6541),(6856,7068),(7355,7518),(7904,8022),(8049,8786)
+	) # IntegerIntervalSet (3071)
+365/DestructibleDebris6x6 :
+IntegerIntervalSet: (
+(1017,1059),(1167,1223),(3733,3738),(4334,4394),(4581,4828),(4984,5033),(5272,5363),(5562,5945),(6153,6224),(6616,6855),(7069,7299),(7519,7903),(8023,8048),(8834,9002),(9091,9194)
+	) # IntegerIntervalSet (2168)
+642/DestructibleRockEx1VerticalHuge :
+IntegerIntervalSet: (
+(1064,1166),(1517,1599),(1664,1838),(2195,2548),(2791,3226),(3348,3698),(3792,4333),(5469,5561)
+	) # IntegerIntervalSet (2137)
+21/Barracks :
+IntegerIntervalSet: (
+(1517,1599),(1664,1838),(2195,2548),(2791,2959),(3074,3226),(3378,3698),(3792,4077),(4268,4333),(4947,4983),(5364,5561),(6052,6162),(6225,6387),(6456,6541),(6957,7068),(7290,7518),(7904,8022),(8049,8832),(9005,9087)
+	) # IntegerIntervalSet (3529)
+38/BarracksReactor :
+IntegerIntervalSet: (
+(2262,2548),(2791,2959),(3074,3226),(3383,3472),(3526,3624),(3792,4074),(4269,4333),(5469,5561)
+	) # IntegerIntervalSet (1239)
+47/SupplyDepotLowered :
+IntegerIntervalSet: (
+(2579,2618),(6414,6457),(6856,6939),(7943,7946)
+	) # IntegerIntervalSet (172)
+37/BarracksTechLab :
+IntegerIntervalSet: (
+(2819,2959),(3074,3226),(3381,3484),(3523,3627),(3792,4070),(4272,4333),(5469,5561)
+	) # IntegerIntervalSet (937)
+48/Marine :
+IntegerIntervalSet: (
+(3506,3698),(3792,4077),(4267,4333),(4687,4828),(4984,5363),(5562,6224),(6542,6855),(6938,9194)
+	) # IntegerIntervalSet (4302)
+49/Reaper :
+IntegerIntervalSet: (
+(3699,3703),(4526,4601)
+	) # IntegerIntervalSet (81)
+24/Bunker :
+IntegerIntervalSet: (
+(4463,4633),(4805,4828),(4984,5363),(5562,6224),(6542,6855),(7285,7288),(7300,7354),(8787,8833),(9004,9089)
+	) # IntegerIntervalSet (1744)
+32/SiegeTankSieged :
+IntegerIntervalSet: (
+(5114,5160),(6052,6151),(6542,6586),(6589,6616),(8787,8844),(8846,8881),(8906,8940),(8943,8989),(8991,9092)
+	) # IntegerIntervalSet (498)
+27/Factory :
+IntegerIntervalSet: (
+(5304,5363),(5562,6224),(6542,6855),(7069,7354),(7519,7903),(8023,8048),(8787,9194)
+	) # IntegerIntervalSet (2142)
+689/Liberator :
+IntegerIntervalSet: (
+(6052,6145),(7519,7557),(7645,7689),(7967,8022),(8049,8090),(8170,8290)
+	) # IntegerIntervalSet (397)
+33/SiegeTank :
+IntegerIntervalSet: (
+(6052,6148),(7852,7903),(8023,8048),(8787,8814)
+	) # IntegerIntervalSet (203)
+39/FactoryTechLab :
+IntegerIntervalSet: (
+(6052,6141),(6630,6855),(7069,7354),(7519,7903),(8023,8048),(8787,9194)
+	) # IntegerIntervalSet (1421)
+28/Starport :
+IntegerIntervalSet: (
+(6052,6150),(6542,6614),(8787,8831)
+	) # IntegerIntervalSet (217)
+132/OrbitalCommand :
+IntegerIntervalSet: (
+(6066,6124),(6225,6541),(6856,7068),(7355,7518),(7904,8022),(8049,8786)
+	) # IntegerIntervalSet (1610)
+734/LiberatorAG :
+IntegerIntervalSet: (
+(6225,6390),(6453,7068),(7355,7518),(7558,7644),(7904,7966),(8091,8169),(8291,8419),(8584,8761)
+	) # IntegerIntervalSet (1482)
+268/MULE :
+IntegerIntervalSet: (
+(8055,8786)
+	) # IntegerIntervalSet (732)
+	) # UnitIntervalSet
