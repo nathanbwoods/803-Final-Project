@@ -21,7 +21,7 @@ class ReplayEnv:
                  screen_size_px=(64, 64),
                  minimap_size_px=(64, 64),
                  discount=1.,
-                 step_mul=50):
+                 step_mul=1):
 
         self.agent = agent
         self.discount = discount
@@ -48,8 +48,8 @@ class ReplayEnv:
         interface.feature_layer.crop_to_playable_area = True
         interface.feature_layer.allow_cheating_layers = True
 
-        interface.render.resolution.x = 512
-        interface.render.resolution.y = 512
+        interface.render.resolution.x = 1024
+        interface.render.resolution.y = 1024
         interface.render.width = 24
         interface.render.minimap_resolution.x = 128
         interface.render.minimap_resolution.y = 128
@@ -109,7 +109,7 @@ class ReplayEnv:
             step = TimeStep(step_type=self._state, reward=0,
                             discount=discount, observation=obs)
 
-            self.agent.step(step, obs.observation)
+            self.agent.step(step, obs.observation, self.controller)
 
             if obs.player_result:
                 break
