@@ -44,7 +44,7 @@ class HarvestAgent():
     def step(self, time_step, obs ):
         step = int( time_step.observation["game_loop"] )
         self.ground_truth( obs, step )
-
+        # Take picture.
 
     def ground_truth( self, obs, step : int ) -> None:
         """Write the raw ground truth file."""
