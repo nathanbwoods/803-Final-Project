@@ -23,10 +23,10 @@ class GlobalPicTally:
 
 
     def add( self, unit ):
-        if key not in self.pics:
-            self.pics[key] = 1
+        if unit not in self.pics:
+            self.pics[unit] = 1
         else:
-            self.pics[key] += 1
+            self.pics[unit] += 1
 
         
     def save( self ):
