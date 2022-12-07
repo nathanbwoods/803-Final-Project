@@ -21,6 +21,6 @@ t.fit_homography(X, Y)
 yhat = t.homography_transform( X ) 
 print( f"Y, Yhat, DeltaY:\n", np.hstack( [ Y, yhat, Y - yhat  ] ) )
 
-print( f"T: {t.H}")
 print( f"randH: {randH.H}")
+print( f"T: {t.H}")
 print( f"Delta-H: {t.H - randH.H}" )

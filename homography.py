@@ -32,12 +32,18 @@ class Transformer:
             A[i*2] = [X,Y,Z,1,0,0,0,0, -X*u, -Y*u, -Z*u]
             A[i*2 + 1] = [0,0,0,0,X,Y,Z,1,-X*v,-Y*v, -Z*v]
 
-        x = np.linalg.lstsq(A, y.flatten(), rcond=None)[0]
+        x, resids, rank, singulars  = np.linalg.lstsq(A, y.flatten(), rcond=None)
         h = np.append(x, [1])
+        print( f"Homography Residuals: {resids}" )
+
+        print( f"Least Squares Check: b, A @ X, b - A @ X")
+        checkB = A.dot( x ).reshape((-1,1))
+        print( np.hstack( ( y.reshape((-1,1)), checkB, y.reshape((-1,1)) - checkB ) ))
 
         self.H = np.vstack([h[0:4], h[4:8], h[8:]])
 
-        # TODO: Perform this per point, and add a Z-scale calculation.
+        # TODO: Perform this per unit instead of per frame,
+        # and add a Z-scale calculation.
         scale_points = np.array([[0, 0, 12], [0, 1, 12], [1, 0, 12]])
         scale = self.homography_transform(scale_points)
         self.x_scale = np.linalg.norm(scale[0] - scale[1]) * 2
