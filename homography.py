@@ -1,6 +1,5 @@
 import numpy as np
 
-
 class Transformer:
 
     def __init__(self, H=None, x_scale=None, y_scale=None, img_size=1024):
@@ -12,9 +11,12 @@ class Transformer:
     def homography_transform(self, X):
         n = X.shape[0]
         X = np.hstack([X, np.ones((n, 1))])
-        Y = np.array([np.matmul(self.H, X[i]) for i in range(n)])
-        Y = Y[:, 0:2] / Y[:, 2:3]
-        return Y
+
+        # Y = np.array([np.matmul(self.H, X[i]) for i in range(n)])
+        # Should be same result as above, but in matrix form.
+        Y = X.dot( self.H.T )
+        Yn = Y[:, 0:2] / Y[:, 2:3] # Y, normalized
+        return Yn
 
     def fit_homography(self, x, y):
         y /= self.image_size
@@ -35,9 +37,9 @@ class Transformer:
 
         self.H = np.vstack([h[0:4], h[4:8], h[8:]])
 
+        # TODO: Perform this per point, and add a Z-scale calculation.
         scale_points = np.array([[0, 0, 12], [0, 1, 12], [1, 0, 12]])
         scale = self.homography_transform(scale_points)
-
         self.x_scale = np.linalg.norm(scale[0] - scale[1]) * 2
         self.y_scale = np.linalg.norm(scale[0] - scale[2]) * 2
 
