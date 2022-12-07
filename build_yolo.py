@@ -6,9 +6,10 @@ from absl import app
 import numpy as np
 
 import HarvestAgent
+from UnitId import sc_to_enumerate
 
 
-YOLO_DIR = 'yolo_truth'
+YOLO_DIR = 'labels'
 
 
 def truthDir(replayNum):
@@ -22,11 +23,12 @@ def truthPath( replayNum, file_name ):
 
 
 def yoloDir(replayNum):
-    fileDir = pathlib.Path(YOLO_DIR) / replayNum
+    fileDir = pathlib.Path(YOLO_DIR)
     return fileDir
 
 
 def yoloPath(replayNum, fileName):
+    fileName = os.path.splitext(fileName)[0] + '.txt'
     filePath = yoloDir(replayNum) / fileName
     return filePath
 
@@ -62,9 +64,19 @@ def convert_truth(replay_num, transformer):
         truth['w'] = truth['radius'] * transformer.x_scale
         truth['h'] = truth['radius'] * transformer.y_scale
 
+        # scId -> enumerated id
+        truth['ind_type'] = truth['sc_type'].map(sc_to_enumerate)
+
+        # drop units with locations not between 0 and 1
+        truth.drop(truth[truth['u'] < 0].index, inplace=True)
+        truth.drop(truth[truth['v'] < 0].index, inplace=True)
+        truth.drop(truth[truth['u'] > 1].index, inplace=True)
+        truth.drop(truth[truth['v'] > 1].index, inplace=True)
+
         # Output the data
-        yolo_data = truth[['sc_type', 'u', 'v', 'w', 'h']].values
-        np.savetxt(yolo_file_path, yolo_data)
+        yolo_data = truth[['ind_type', 'u', 'v', 'w', 'h']].values
+        col_format = '%d', '%1.6f', '%1.6f', '%1.6f', '%1.6f'
+        np.savetxt(yolo_file_path, yolo_data, fmt=col_format)
 
 
 def main(unused):

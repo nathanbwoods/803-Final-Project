@@ -7,6 +7,9 @@ import util
 unitsSc = util.StrIdMap() # 259 units numbered up to 1961
 unitsMl = util.StrIdMap() # With 0-to-258 numbering
 unitsMain = util.StrIdMap() # No neutral units.  Don't use the numbering here!
+
+sc_to_enumerate = {}
+
 for unitList in [ pysc2.lib.units.Protoss,
                   pysc2.lib.units.Terran,
                   pysc2.lib.units.Zerg ]:
@@ -15,7 +18,8 @@ for unitList in [ pysc2.lib.units.Protoss,
         unitsMain[enum.numerator] = enum.name
 for enum in pysc2.lib.units.Neutral:
         unitsSc[enum.numerator] = enum.name
-            
+
 for iUnit, scId in enumerate( unitsSc ):
     unitName = unitsSc[scId]
     unitsMl[iUnit] = unitName
+    sc_to_enumerate[scId] = iUnit

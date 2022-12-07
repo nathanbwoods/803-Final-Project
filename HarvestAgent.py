@@ -13,7 +13,7 @@ from util import ReplayPicTally
 # Where the raw ground truth CSVs go.
 TRUTH_DIR = 'truth'
 # Where the rgb_screen captures go.
-SCREEN_DIR = 'screen'
+SCREEN_DIR = 'images'
 
 
 def truthDir( replayNum ):
@@ -31,7 +31,7 @@ def truthPath( replayNum, step ):
     return filePath
 
 def screenDir(replayNum):
-    fileDir = pathlib.Path(SCREEN_DIR) / f"r{replayNum:06d}"
+    fileDir = pathlib.Path(SCREEN_DIR)
     return fileDir
 
 def screenFile ( replayNum, step ):
