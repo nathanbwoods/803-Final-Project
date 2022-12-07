@@ -1,0 +1,12 @@
+name,sc_type,ml_type,owner,pos.x,pos.y,pos.z,radius,is_on_screen
+Camera,-1,-1,-1,13.67578125,62.98046875,0.0,-1,False
+LabMineralField,665,232,16,8.0,67.5,9.989228248596191,1.125,True
+SpacePlatformGeyser,343,250,16,12.5,60.5,9.987030029296875,1.5,True
+LabMineralField,665,232,16,8.0,66.5,9.989228248596191,1.125,True
+LabMineralField750,666,233,16,13.0,74.5,9.987030029296875,1.125,True
+LabMineralField750,666,233,16,9.0,72.5,9.987030029296875,1.125,True
+LabMineralField750,666,233,16,8.0,71.5,9.987030029296875,1.125,True
+LabMineralField,665,232,16,8.0,69.5,9.989228248596191,1.125,True
+LabMineralField,665,232,16,12.0,73.5,9.987030029296875,1.125,True
+SpacePlatformGeyser,343,250,16,7.5,63.5,9.989228248596191,1.5,True
+LabMineralField750,666,233,16,7.0,68.5,9.989228248596191,1.125,True

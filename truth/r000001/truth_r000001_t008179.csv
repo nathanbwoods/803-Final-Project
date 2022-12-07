@@ -1,0 +1,6 @@
+name,sc_type,ml_type,owner,pos.x,pos.y,pos.z,radius,is_on_screen
+Camera,-1,-1,-1,46.32421875,36.63671875,0.0,-1,False
+LabMineralField750,666,233,16,39.0,58.5,7.99114990234375,1.125,True
+Oracle,495,24,1,42.61572265625,25.84814453125,13.7724609375,0.75,True
+StasisTrap,732,36,1,43.5,26.5,9.988378524780273,0.4375,True
+InhibitorZoneMedium,1958,228,16,54.5,43.5,9.987030029296875,0.5625,True

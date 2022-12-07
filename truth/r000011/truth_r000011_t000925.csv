@@ -1,0 +1,8 @@
+name,sc_type,ml_type,owner,pos.x,pos.y,pos.z,radius,is_on_screen
+Camera,-1,-1,-1,100.9921875,24.45703125,0.0,-1,False
+LabMineralField,665,232,16,113.0,39.5,9.999237060546875,1.125,True
+Gateway,62,15,1,90.5,28.5,11.9981689453125,1.8125,True
+Probe,84,27,1,99.12841796875,33.37939453125,9.996185302734375,0.375,True
+SpacePlatformGeyser,343,250,16,107.5,29.5,9.996185302734375,1.5,True
+UnbuildablePlatesDestructible,474,252,16,104.0,30.0,9.996185302734375,1.125,True
+Nexus,59,21,1,104.5,13.5,11.99897289276123,2.75,True

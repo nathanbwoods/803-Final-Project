@@ -88,7 +88,7 @@ class ReplayEnv:
         return True
 
     def start(self):
-        #_features = features.features_from_game_info(self.controller.game_info(), action_space=actions.ActionSpace.RAW)
+        _features = features.features_from_game_info(self.controller.game_info(), action_space=actions.ActionSpace.RAW)
 
         while True:
             self.controller.step(self.step_mul)

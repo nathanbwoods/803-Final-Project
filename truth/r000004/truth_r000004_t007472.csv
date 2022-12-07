@@ -1,0 +1,3 @@
+name,sc_type,ml_type,owner,pos.x,pos.y,pos.z,radius,is_on_screen
+Camera,-1,-1,-1,27.671875,70.87109375,0.0,-1,False
+DestructibleDebris6x6,365,212,16,31.0,77.0,9.510185241699219,3.1875,True

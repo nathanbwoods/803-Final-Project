@@ -1,0 +1,4 @@
+name,sc_type,ml_type,owner,pos.x,pos.y,pos.z,radius,is_on_screen
+Camera,-1,-1,-1,43.33984375,81.85546875,0.0,-1,False
+VespeneGeyser,342,255,16,35.5,94.5,9.990081787109375,1.5,True
+Refinery,20,85,1,35.5,94.5,9.990081787109375,1.6875,True

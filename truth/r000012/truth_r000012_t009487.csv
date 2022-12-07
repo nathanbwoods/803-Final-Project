@@ -1,0 +1,5 @@
+name,sc_type,ml_type,owner,pos.x,pos.y,pos.z,radius,is_on_screen
+Camera,-1,-1,-1,51.7890625,92.7109375,0.0,-1,False
+MineralField,341,235,16,42.0,103.5,9.99193286895752,1.125,True
+VespeneGeyser,342,255,16,45.5,104.5,9.990081787109375,1.5,True
+MineralField750,483,237,16,41.0,104.5,9.990081787109375,1.125,True

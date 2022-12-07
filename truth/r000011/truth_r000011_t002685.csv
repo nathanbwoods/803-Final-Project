@@ -1,0 +1,3 @@
+name,sc_type,ml_type,owner,pos.x,pos.y,pos.z,radius,is_on_screen
+Camera,-1,-1,-1,59.46484375,70.0703125,0.0,-1,False
+Probe,84,27,1,57.17724609375,67.623291015625,7.999006271362305,0.375,True

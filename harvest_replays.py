@@ -6,7 +6,7 @@ import pathlib
 import traceback
 
 import pysc2.lib.remote_controller
-from pysc2.lib import features, point
+from pysc2.lib import features, point, actions
 from absl import app, flags
 from pysc2.env.environment import TimeStep, StepType
 from pysc2 import run_configs
@@ -55,8 +55,8 @@ class ReplayEnv:
         self.replayFrames = docketData['frames']        
         agent.set( self.replayNum )
         
-        self.run_config = run_configs.get()
-        self.sc2_proc = self.run_config.start()
+        self.run_config = run_configs.get('4.10.0')
+        self.sc2_proc = self.run_config.start(want_rgb=True)
         self.controller = self.sc2_proc.controller
 
         replay_data = self.run_config.replay_data(replay_file_path)
@@ -80,6 +80,12 @@ class ReplayEnv:
         interface.feature_layer.crop_to_playable_area = True
         interface.feature_layer.allow_cheating_layers = True
 
+        interface.render.resolution.x = 512
+        interface.render.resolution.y = 512
+        interface.render.width = 24
+        interface.render.minimap_resolution.x = 128
+        interface.render.minimap_resolution.y = 128
+
         screen_size_px.assign_to(interface.feature_layer.resolution)
         minimap_size_px.assign_to(interface.feature_layer.minimap_resolution)
 
@@ -94,7 +100,8 @@ class ReplayEnv:
             replay_data=replay_data,
             map_data=map_data,
             options=interface,
-            observed_player_id=player_id))
+            observed_player_id=player_id,
+            realtime=False))
 
         self._state = StepType.FIRST
 
@@ -117,7 +124,7 @@ class ReplayEnv:
         return True
 
     def start(self):
-        _features = features.features_from_game_info(self.controller.game_info())
+        _features = features.features_from_game_info(self.controller.game_info(), action_space=actions.ActionSpace.RGB)
         currentFrame = 0
         for frame in self.replayFrames:
             framesForward = frame - currentFrame

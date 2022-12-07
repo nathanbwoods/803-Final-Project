@@ -3,7 +3,7 @@ import os.path
 import pathlib
 import csv
 
-from pysc2.lib import features
+from pysc2.lib import features, actions
 import matplotlib.pyplot as plt
 
 from util import UnitId
@@ -29,11 +29,23 @@ def truthFile ( replayNum, step ):
 def truthPath( replayNum, step ):
     filePath = truthDir( replayNum ) / truthFile( replayNum, step )
     return filePath
-    
+
+def screenDir(replayNum):
+    fileDir = pathlib.Path(SCREEN_DIR) / f"r{replayNum:06d}"
+    return fileDir
+
+def screenFile ( replayNum, step ):
+    fileName = f"truth_r{replayNum:06d}_t{step:06d}.png"
+    return fileName
+
+def screenPath( replayNum, step ):
+    filePath = screenDir( replayNum ) / screenFile( replayNum, step )
+    return filePath
+
 
 class HarvestAgent():
     def __init__(self):
-        self.action_spec = None
+        self.action_spec = actions.ActionSpace.RAW
 
 
     def set( self, num : int ):
@@ -50,6 +62,18 @@ class HarvestAgent():
         """Write the raw ground truth file."""
         units = obs.observation.raw_data.units
         cameraPosRaw = obs.observation.raw_data.player.camera
+
+        fileDir = screenDir( self.num )
+        if not os.path.exists( fileDir ):
+            os.makedirs( fileDir )
+        filePath = screenPath( self.num, step )
+
+        rgb_screen = features.Feature.unpack_rgb_image(obs.observation.render_data.map)
+
+        plt.imsave(filePath, rgb_screen)
+
+        fileName = screenFile( self.num, step )
+        print( f"Done writing png {fileName}." )
         
         csvRows = [ [ "name",
                       "sc_type",

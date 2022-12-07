@@ -7,7 +7,7 @@ import pysc2.lib.units # Not included in pysc2 import
 import util
 
 replays = util.StrIdMap()
-SC_DIR = "/home/schulzew/Classes/Project/StarCraftII"
+SC_DIR = "C:\Program Files (x86)\StarCraft II"
 replayDir = pathlib.Path( SC_DIR ) / "Replays"
 replayPattern = str( replayDir / "*.SC2Replay" )
 replayFiles = glob.glob( replayPattern )

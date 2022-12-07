@@ -1,0 +1,7 @@
+name,sc_type,ml_type,owner,pos.x,pos.y,pos.z,radius,is_on_screen
+Camera,-1,-1,-1,76.7890625,55.453125,0.0,-1,False
+DestructibleDebris6x6,365,212,16,67.0,61.0,9.990081787109375,3.1875,True
+InhibitorZoneSmall,1957,229,16,67.5,60.5,9.990081787109375,0.5625,True
+InhibitorZoneSmall,1957,229,16,72.5,55.5,9.990081787109375,0.5625,True
+Oracle,495,24,1,72.0810546875,46.0244140625,13.74658203125,0.75,True
+DestructibleDebris6x6,365,212,16,73.0,55.0,9.990081787109375,3.1875,True
