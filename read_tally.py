@@ -27,7 +27,7 @@ for result in results:
 y = [ result[1] for result in reversed( results ) ]    
 x = [ i / len( y ) for i in range( len( y ) ) ]
 fig, ax = plt.subplots()
-ax.plot( x, y )
+ax.semilogy( x, y )
 ax.grid()
 ax.set_title( "Class Sample Count Distribution" )
 fig.savefig( "tally.png" )
