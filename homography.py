@@ -23,8 +23,8 @@ class Transformer:
         n = x.shape[0]
         A = np.zeros([2*n, 11])
         for i in range(n):
-            v = y[i][0]
-            u = y[i][1]
+            u = y[i][0]
+            v = y[i][1]
             X = x[i][0]
             Y = x[i][1]
             Z = x[i][2]

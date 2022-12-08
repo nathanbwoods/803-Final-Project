@@ -4,12 +4,17 @@ import pandas as pd
 import pickle
 from absl import app
 import numpy as np
+import cv2
+import pybboxes as pbx
 
+from homography import Transformer
 import HarvestAgent
 from UnitId import sc_to_enumerate
 
 
 YOLO_DIR = 'labels'
+IMG_DIR = 'images'
+VAL_OUTPUT_DIR = 'validation_boxes'
 
 
 def truthDir(replayNum):
@@ -33,13 +38,50 @@ def yoloPath(replayNum, fileName):
     return filePath
 
 
-def convert_truth(replay_num, transformer):
+def imageDir():
+    imageDir = pathlib.Path(IMG_DIR)
+    return imageDir
+
+
+def imagePath(fileName):
+    fileName = os.path.splitext(fileName)[0] + '.png'
+    filePath = imageDir() / fileName
+    return filePath
+
+
+def outputDir():
+    return  pathlib.Path(VAL_OUTPUT_DIR)
+
+
+def outputPath(fileName):
+    fileName = os.path.splitext(fileName)[0] + '.png'
+    return outputDir() / fileName
+
+
+def val_boxes(yolo_data, image_path, output_path):
+    print(F"Validating boxes using {image_path}, output to {output_path}")
+    img = cv2.imread(str(image_path))
+
+    for box in yolo_data.tolist():
+        if 0 < box[3] < 1 and 0 < box[4] < 1:
+            b = pbx.YoloBoundingBox(box[1], box[2], box[3], box[4], img.shape[0:2])
+            b = pbx.convert_bbox(b, to_type="voc")
+            cv2.rectangle(img, (b[0], b[1]), (b[2], b[3]), (0, 0, 255), 1)
+
+    cv2.imwrite(str(output_path), img)
+
+
+def convert_truth(replay_num, transformer, val_output_frequency=1000):
 
     fileDir = yoloDir(replay_num)
     if not os.path.exists(fileDir):
         os.makedirs(fileDir)
 
-    for truth_file in os.listdir(truthDir(replay_num)):
+    out_dir = outputDir()
+    if not os.path.exists(out_dir):
+        os.makedirs(out_dir)
+
+    for ind, truth_file in enumerate(os.listdir(truthDir(replay_num))):
         truth_filename = os.fsdecode(truth_file)
         truth_path = truthPath(replay_num, truth_filename)
         yolo_file_path = yoloPath(replay_num, truth_filename)
@@ -77,6 +119,12 @@ def convert_truth(replay_num, transformer):
         yolo_data = truth[['ind_type', 'u', 'v', 'w', 'h']].values
         col_format = '%d', '%1.6f', '%1.6f', '%1.6f', '%1.6f'
         np.savetxt(yolo_file_path, yolo_data, fmt=col_format)
+
+        # Visualize validation boxes
+        if val_output_frequency and ind % val_output_frequency == 0:
+            img_path = imagePath(truth_filename)
+            vis_output_path = outputPath(truth_filename)
+            val_boxes(yolo_data, img_path, vis_output_path)
 
 
 def main(unused):
