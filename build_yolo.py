@@ -63,7 +63,7 @@ def val_boxes(yolo_data, image_path, output_path):
     img = cv2.imread(str(image_path))
 
     for box in yolo_data.tolist():
-        if 0 < box[3] < 1 and 0 < box[4] < 1:
+        if 0 < box[3] and 0 < box[4]:
             b = pbx.YoloBoundingBox(box[1], box[2], box[3], box[4], img.shape[0:2])
             b = pbx.convert_bbox(b, to_type="voc")
             cv2.rectangle(img, (b[0], b[1]), (b[2], b[3]), (0, 0, 255), 1)
@@ -103,17 +103,17 @@ def convert_truth(replay_num, transformer, val_output_frequency=1000):
         truth.drop(truth[truth['name'] == 'Camera'].index, inplace=True)
 
         # Scale width and height
-        truth['w'] = truth['radius'] * transformer.x_scale
-        truth['h'] = truth['radius'] * transformer.y_scale
+        truth['w'] = truth['radius'] * transformer.x_scale * 2
+        truth['h'] = truth['radius'] * transformer.y_scale * 2
 
         # scId -> enumerated id
         truth['ind_type'] = truth['sc_type'].map(sc_to_enumerate)
 
         # drop units with locations not between 0 and 1
-        truth.drop(truth[truth['u'] < 0].index, inplace=True)
-        truth.drop(truth[truth['v'] < 0].index, inplace=True)
-        truth.drop(truth[truth['u'] > 1].index, inplace=True)
-        truth.drop(truth[truth['v'] > 1].index, inplace=True)
+        # truth.drop(truth[truth['u'] < 0].index, inplace=True)
+        # truth.drop(truth[truth['v'] < 0].index, inplace=True)
+        # truth.drop(truth[truth['u'] > 1].index, inplace=True)
+        # truth.drop(truth[truth['v'] > 1].index, inplace=True)
 
         # Output the data
         yolo_data = truth[['ind_type', 'u', 'v', 'w', 'h']].values
@@ -122,6 +122,7 @@ def convert_truth(replay_num, transformer, val_output_frequency=1000):
 
         # Visualize validation boxes
         if val_output_frequency and ind % val_output_frequency == 0:
+            print(truth_path)
             img_path = imagePath(truth_filename)
             vis_output_path = outputPath(truth_filename)
             val_boxes(yolo_data, img_path, vis_output_path)

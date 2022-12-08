@@ -21,6 +21,8 @@ class Transformer:
     def fit_homography(self, x, y):
         y /= self.image_size
         n = x.shape[0]
+
+        x = np.hstack([x, np.ones([n, 1])])
         A = np.zeros([2*n, 11])
         for i in range(n):
             u = y[i][0]
@@ -44,8 +46,11 @@ class Transformer:
 
         # TODO: Perform this per unit instead of per frame,
         # and add a Z-scale calculation.
-        scale_points = np.array([[0, 0, 12], [0, 1, 12], [1, 0, 12]])
-        scale = self.homography_transform(scale_points)
-        self.x_scale = np.linalg.norm(scale[0] - scale[1]) * 2
-        self.y_scale = np.linalg.norm(scale[0] - scale[2]) * 2
+        # scale_points = np.array([[0, 0, 12], [0, 1, 12], [1, 0, 12]])
+        # scale = self.homography_transform(scale_points)
+        # print(scale)
+        # self.x_scale = np.linalg.norm(scale[0] - scale[1]) * 2
+        # self.y_scale = np.linalg.norm(scale[0] - scale[2]) * 2
+        self.x_scale = 0.1
+        self.y_scale = 0.1
 
