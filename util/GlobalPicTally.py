@@ -23,7 +23,10 @@ class GlobalPicTally:
 
 
     def add( self, unit ):
-        self.pics[unit] += 1
+        if unit not in self.pics:
+            self.pics[unit] = 1
+        else:
+            self.pics[unit] += 1
 
         
     def save( self ):
@@ -35,7 +38,10 @@ class GlobalPicTally:
             
     def loadReplayTally( self, replayTally ):
         for key in replayTally.pics:
-            self.pics[key] += replayTally.pics[key]
+            if key not in self.pics:
+                self.pics[key] = replayTally.pics[key]
+            else:
+                self.pics[key] += replayTally.pics[key]
 
 
     def leastViewed( self ):
