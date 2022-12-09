@@ -1,6 +1,6 @@
 name,sc_type,ml_type,owner,pos.x,pos.y,pos.z,radius,is_on_screen
 Camera,-1,-1,-1,104.9453125,39.62109375,0.0,-1,False
-SpacePlatformGeyser,343,250,16,113.5,32.5,9.997711181640625,1.5,True
+SpacePlatformGeyser,343,250,16,113.5,32.5,9.999237060546875,1.5,True
 SpacePlatformGeyser,343,250,16,107.5,29.5,9.996185302734375,1.5,True
 LabMineralField,665,232,16,113.0,35.5,9.996185302734375,1.125,True
 UnbuildablePlatesDestructible,474,252,16,104.0,30.0,9.996185302734375,1.125,True

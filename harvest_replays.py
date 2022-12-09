@@ -188,6 +188,7 @@ def main(unused):
         replayTruth = pathlib.Path( truthDir( iReplay ) )
         if replayTruth.exists():
             print( "Truth already harvested.  Skipping." )
+            continue
         try:
             env = ReplayEnv(ReplayId.replays[iReplay], agent_cls(),
                             replayDocket )

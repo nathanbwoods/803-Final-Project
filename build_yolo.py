@@ -109,11 +109,11 @@ def convert_truth(replay_num, transformer, val_output_frequency=1000):
         # scId -> enumerated id
         truth['ind_type'] = truth['sc_type'].map(sc_to_enumerate)
 
-        # drop units with locations not between 0 and 1
-        # truth.drop(truth[truth['u'] < 0].index, inplace=True)
-        # truth.drop(truth[truth['v'] < 0].index, inplace=True)
-        # truth.drop(truth[truth['u'] > 1].index, inplace=True)
-        # truth.drop(truth[truth['v'] > 1].index, inplace=True)
+        # cull non-coplanar units
+        # truth.drop(truth[truth['pos.z'] < 8].index, inplace=True)
+        #
+        # truth.drop(truth[truth['pos.z'] > 14].index, inplace=True)
+
 
         # Output the data
         yolo_data = truth[['ind_type', 'u', 'v', 'w', 'h']].values
