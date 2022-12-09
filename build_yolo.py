@@ -1,7 +1,6 @@
 import os
 import pathlib
 import pandas as pd
-import pickle
 from absl import app
 import numpy as np
 import cv2
@@ -63,7 +62,7 @@ def val_boxes(yolo_data, image_path, output_path):
     img = cv2.imread(str(image_path))
 
     for box in yolo_data.tolist():
-        if 0 < box[3] and 0 < box[4]:
+        if 0 < box[3] < 1 and 0 < box[4] < 1 and 0 < box[1] < 1 and 0 < box[2] < 1:
             b = pbx.YoloBoundingBox(box[1], box[2], box[3], box[4], img.shape[0:2])
             b = pbx.convert_bbox(b, to_type="voc")
             cv2.rectangle(img, (b[0], b[1]), (b[2], b[3]), (0, 0, 255), 1)
@@ -93,45 +92,39 @@ def convert_truth(replay_num, transformer, val_output_frequency=1000):
         c_x, c_y = float(camera['pos.x']), float(camera['pos.y'])
         truth['pos.x'] -= c_x
         truth['pos.y'] -= c_y
+        truth['pos.z'] -= 11.62
 
         # Transform to camera plane
-        uv = transformer.homography_transform(truth[['pos.x', 'pos.y', 'pos.z']].values)
-        truth['u'] = uv[:, 0]
-        truth['v'] = uv[:, 1]
+        uvwh = transformer.homography_transform(truth[['pos.x', 'pos.y', 'pos.z', 'radius']].values)
+        truth['u'] = uvwh[:, 0]
+        truth['v'] = uvwh[:, 1]
+        truth['w'] = uvwh[:, 2]
+        truth['h'] = uvwh[:, 3]
 
         # Drop camera row
         truth.drop(truth[truth['name'] == 'Camera'].index, inplace=True)
 
-        # Scale width and height
-        truth['w'] = truth['radius'] * transformer.x_scale * 2
-        truth['h'] = truth['radius'] * transformer.y_scale * 2
-
         # scId -> enumerated id
         truth['ind_type'] = truth['sc_type'].map(sc_to_enumerate)
-
-        # cull non-coplanar units
-        # truth.drop(truth[truth['pos.z'] < 8].index, inplace=True)
-        #
-        # truth.drop(truth[truth['pos.z'] > 14].index, inplace=True)
-
 
         # Output the data
         yolo_data = truth[['ind_type', 'u', 'v', 'w', 'h']].values
         col_format = '%d', '%1.6f', '%1.6f', '%1.6f', '%1.6f'
         np.savetxt(yolo_file_path, yolo_data, fmt=col_format)
 
-        # Visualize validation boxes
-        # if val_output_frequency and ind % val_output_frequency == 0:
-        #     print(truth_path)
-        #     img_path = imagePath(truth_filename)
-        #     vis_output_path = outputPath(truth_filename)
-        #     val_boxes(yolo_data, img_path, vis_output_path)
+        #Visualize validation boxes
+        if val_output_frequency and ind % val_output_frequency == 0:
+            print(truth_path)
+            img_path = imagePath(truth_filename)
+            vis_output_path = outputPath(truth_filename)
+            val_boxes(yolo_data, img_path, vis_output_path)
 
 
 def main(unused):
 
-    with open("./transformer.pickle", 'rb') as f:
-        transformer = pickle.load(f)
+    transformer = Transformer(
+        H=np.array([[2.11552, 0.27027, -0.42066, 18.15], [0, -1.50956, -1.56417, 18.15], [0, 0.54053, -0.84132, 36.3]]),
+        img_size=512)
 
     for dir in os.listdir(HarvestAgent.TRUTH_DIR):
         print(F"Converting {dir}")

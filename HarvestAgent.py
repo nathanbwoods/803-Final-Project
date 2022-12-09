@@ -93,7 +93,6 @@ class HarvestAgent():
             
         for unit in units:
             if unit.is_on_screen:
-                if unit.unit_type in UnitId.unitsSc and UnitId.unitsSc[unit.unit_type] in UnitId.unitsMl:
                     newRow = [ UnitId.unitsSc[unit.unit_type],
                                unit.unit_type,
                                UnitId.unitsMl[UnitId.unitsSc[unit.unit_type]],

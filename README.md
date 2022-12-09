@@ -1,6 +1,3 @@
-# 803-Final-Project
-File sharing for our 803 project
+# 803 Final Project
 
-Not planning to use this repo in the "correct" way--just getting files back and forth. 
-
-I know that our environments are likely to result in some code variation, so hand-merging things is probably the best bet.
+YOLOv5 is a publicly available image classifier with a Python interface.  Starcraft II is a computer strategy game, in which sci-fi units engage in battle.  In 2019, a ML agent called AlphaStar beat top world Starcraft II players; however, it did not play the game using the standard interface, but required a tailored API.  We worked to bridge the gap between AlphaStar and normal play by training an image classifier model to identify unit classes through the standard perspective camera.

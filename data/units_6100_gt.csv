@@ -1,4 +1,4 @@
-name,unit_type,owner,pos.x,pos.y,pos.z,radius,is_on_screen,feature_x,feature_y,wbs_expected
+name,sc_type,owner,pos.x,pos.y,pos.z,radius,is_on_screen,feature_x,feature_y,wbs_expected
 Camera,-1,-1,121.4609375,27.08984375,0,-1,False,-1,-1,False
 Barracks,21,2,115.5,29.5,11.9911031723022,1.8125,True,64.4166666666667,102.291666666667,True
 Bunker,24,1,124.5,39.5,9.98922824859619,1.8125,True,160.416666666667,-4.375,False
