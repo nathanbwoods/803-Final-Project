@@ -93,16 +93,17 @@ class HarvestAgent():
             
         for unit in units:
             if unit.is_on_screen:
-                newRow = [ UnitId.unitsSc[unit.unit_type],
-                           unit.unit_type,
-                           UnitId.unitsMl[UnitId.unitsSc[unit.unit_type]],
-                           unit.owner,
-                           unit.pos.x,
-                           unit.pos.y,
-                           unit.pos.z,
-                           unit.radius,
-                           unit.is_on_screen ]
-                csvRows.append( newRow )
+                if unit.unit_type in UnitId.unitsSc and UnitId.unitsSc[unit.unit_type] in UnitId.unitsMl:
+                    newRow = [ UnitId.unitsSc[unit.unit_type],
+                               unit.unit_type,
+                               UnitId.unitsMl[UnitId.unitsSc[unit.unit_type]],
+                               unit.owner,
+                               unit.pos.x,
+                               unit.pos.y,
+                               unit.pos.z,
+                               unit.radius,
+                               unit.is_on_screen ]
+                    csvRows.append( newRow )
 
         fileDir = truthDir( self.num )
         if not os.path.exists( fileDir ):

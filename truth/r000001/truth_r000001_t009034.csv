@@ -1,5 +1,0 @@
-name,sc_type,ml_type,owner,pos.x,pos.y,pos.z,radius,is_on_screen
-Camera,-1,-1,-1,82.53125,79.9140625,0.0,-1,False
-InhibitorZoneMedium,1958,228,16,80.5,77.5,9.987030029296875,0.5625,True
-InhibitorZoneMedium,1958,228,16,85.5,72.5,9.989757537841797,0.5625,True
-Oracle,495,24,1,67.693603515625,76.5380859375,13.729736328125,0.75,True

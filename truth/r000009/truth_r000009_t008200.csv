@@ -1,7 +1,0 @@
-name,sc_type,ml_type,owner,pos.x,pos.y,pos.z,radius,is_on_screen
-Camera,-1,-1,-1,21.38671875,101.12890625,0.0,-1,False
-MineralField,341,235,16,12.0,105.5,9.986910820007324,1.125,True
-VespeneGeyser,342,255,16,18.5,107.5,9.983978271484375,1.5,True
-DestructibleRockEx14x4,638,221,16,30.0,97.0,9.991607666015625,2.25,True
-UnbuildableRocksDestructible,472,253,16,22.0,109.0,9.985504150390625,1.125,True
-VespeneGeyser,342,255,16,14.5,107.5,9.983978271484375,1.5,True

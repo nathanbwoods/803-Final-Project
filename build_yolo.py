@@ -121,11 +121,11 @@ def convert_truth(replay_num, transformer, val_output_frequency=1000):
         np.savetxt(yolo_file_path, yolo_data, fmt=col_format)
 
         # Visualize validation boxes
-        if val_output_frequency and ind % val_output_frequency == 0:
-            print(truth_path)
-            img_path = imagePath(truth_filename)
-            vis_output_path = outputPath(truth_filename)
-            val_boxes(yolo_data, img_path, vis_output_path)
+        # if val_output_frequency and ind % val_output_frequency == 0:
+        #     print(truth_path)
+        #     img_path = imagePath(truth_filename)
+        #     vis_output_path = outputPath(truth_filename)
+        #     val_boxes(yolo_data, img_path, vis_output_path)
 
 
 def main(unused):

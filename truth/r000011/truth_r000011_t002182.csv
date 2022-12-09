@@ -1,4 +1,0 @@
-name,sc_type,ml_type,owner,pos.x,pos.y,pos.z,radius,is_on_screen
-Camera,-1,-1,-1,25.23828125,97.8125,0.0,-1,False
-UnbuildablePlatesDestructible,474,252,16,16.0,110.0,9.996185302734375,1.125,True
-Probe,84,27,1,28.78564453125,99.735107421875,9.999402046203613,0.375,True

@@ -1,5 +1,0 @@
-name,sc_type,ml_type,owner,pos.x,pos.y,pos.z,radius,is_on_screen
-Camera,-1,-1,-1,12.0,83.171875,0.0,-1,False
-SpacePlatformGeyser,343,250,16,13.5,75.5,7.9880828857421875,1.5,True
-SpacePlatformGeyser,343,250,16,9.5,75.5,7.9880828857421875,1.5,True
-Oracle,495,24,1,30.78662109375,99.646240234375,13.764892578125,0.75,True

@@ -1,4 +1,0 @@
-name,sc_type,ml_type,owner,pos.x,pos.y,pos.z,radius,is_on_screen
-Camera,-1,-1,-1,115.16015625,63.52734375,0.0,-1,False
-DestructibleDebris6x6,365,212,16,109.0,59.0,9.465934753417969,3.1875,True
-Overlord,106,152,1,109.2412109375,70.9326171875,15.77001953125,1.0,True

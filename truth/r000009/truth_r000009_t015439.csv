@@ -1,6 +1,0 @@
-name,sc_type,ml_type,owner,pos.x,pos.y,pos.z,radius,is_on_screen
-Camera,-1,-1,-1,90.48046875,32.5390625,0.0,-1,False
-VespeneGeyser,342,255,16,99.5,35.5,7.986569404602051,1.5,True
-Battlecruiser,57,52,1,82.6298828125,37.792724609375,11.734375,1.25,True
-Battlecruiser,57,52,1,84.73095703125,39.18310546875,11.734375,1.25,True
-Battlecruiser,57,52,1,81.947998046875,35.120361328125,11.734375,1.25,True

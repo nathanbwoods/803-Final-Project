@@ -1,8 +1,0 @@
-name,sc_type,ml_type,owner,pos.x,pos.y,pos.z,radius,is_on_screen
-Camera,-1,-1,-1,124.5,56.2578125,0.0,-1,False
-LabMineralField,665,232,16,116.0,68.5,9.988378524780273,1.125,True
-Oracle,495,24,1,128.14794921875,50.498046875,11.73828125,0.75,True
-LabMineralField,665,232,16,131.0,53.5,7.98504638671875,1.125,True
-LabMineralField750,666,233,16,130.0,54.5,7.98504638671875,1.125,True
-LabMineralField,665,232,16,133.0,51.5,7.9880828857421875,1.125,True
-LabMineralField,665,232,16,133.0,48.5,7.9880828857421875,1.125,True
