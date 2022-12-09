@@ -1,0 +1,54 @@
+\documentclass{article}
+\usepackage{epsfig,url,amsmath,amsfonts}
+\usepackage{graphicx,caption,subcaption,color}
+
+\begin{document}
+	
+$C$ is the full camera matrix:
+\begin{equation}
+	C = A \times P \times E
+\end{equation}
+
+$A$ is the affine matrix:
+\begin{equation}
+	A = \begin{Bmatrix}
+		1 & 0 & a_x \\
+		0 & -1 & a_y \\
+		0 & 0 & 1
+	\end{Bmatrix}
+\end{equation}
+Where $a_x$ and $a_y$ equal 0.5, which shifts the screen-space projection so that the camera target is in the middle of the screen (screen space coordinates (0.5, 0.5)).
+	
+$P$ is the projection matrix:
+\begin{equation}
+	P = \begin{bmatrix}
+		f & 0 & 0 & 0 \\
+		0 & f & 0 & 0 \\
+		0 & 0 & 1 & 0 \\
+	\end{bmatrix}
+\end{equation}
+
+Where $f$ is the width of the focal plane.  Since the field of view was used as an input parameter for the geometric construction of the camera, the following equation was used to calculate $f$:
+
+\begin{equation}
+	f = \frac{1}{\tan FOV}
+\end{equation}
+
+Where $FOV$ is the field of view in radians.
+
+$E$ is the extrinsic matrix:
+
+\begin{equation}
+	E = \begin{Bmatrix}
+		1 & 0 & 0 & 0 \\
+		0 & \cos p & \sin p & 0 \\
+		0 & \sin p & -\cos p & c_z \\
+		0 & 0 & 0 & 1 \\
+	\end{Bmatrix}
+\end{equation}
+
+Where $p$ is the pitch from vertical in radians, and $c_z$ is the camera Z-value in its own coordinate frame, which is the distance from the target point.
+
+The geometric parameters for the final homography were: $$FOV=25.3^\circ, c_z = 36.3, p = 32.72^\circ$$.  (Angles were converted from degrees to radians in software.)
+
+\end{document}
